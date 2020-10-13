@@ -6,3 +6,5 @@ Steps to recreate
 create server.js
 
 `nodemon server.js`
+
+`npm i express mongoose dotenv`
