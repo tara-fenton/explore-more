@@ -8,3 +8,6 @@ create server.js
 `nodemon server.js`
 
 `npm i express mongoose dotenv`
+
+`npm install react-router-dom`
+create navigation
