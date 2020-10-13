@@ -1,12 +1,13 @@
 var mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost:27017/explore", {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-});
-
+mongoose.connect(
+  process.env.DATABASE_URL,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  }
+);
 var db = mongoose.connection;
 
 db.on("connected", function () {
