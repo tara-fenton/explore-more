@@ -20,6 +20,7 @@ async function index(req, res) {
 
 async function create(req, res) {
   const location = await Location.create(req.body);
+  location.user = req.body.user._id;
   res.status(201).json(location);
 }
 

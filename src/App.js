@@ -18,6 +18,7 @@ class App extends Component {
   
 
   handleAddLocation = async newLocationData => {
+    newLocationData.user = this.state.user
     const newLocation = await locationAPI.create(newLocationData);
     this.setState(state => ({
       locations: [...state.locations, newLocation]
