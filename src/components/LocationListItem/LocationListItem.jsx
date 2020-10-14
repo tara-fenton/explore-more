@@ -2,7 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 // import './LocationListItem.css';
 
-function LocationListItem({ location, handleDeleteLocation }) {
+function LocationListItem({
+	location,
+	handleDeleteLocation,
+	handleAddLocationPhoto,
+}) {
 	return (
 		<div>
 			<div>
@@ -18,15 +22,16 @@ function LocationListItem({ location, handleDeleteLocation }) {
 			<div>
 				<Link
 					to={{
-						pathname: "/photos",
+						pathname: `/addLocationPhoto/${location._id}`,
 						state: { location },
+						handleAddLocationPhoto: handleAddLocationPhoto(location._id),
 					}}>
 					Photos
 				</Link>
 				<Link
 					// className="btn btn-xs btn-info"
 					to={{
-						pathname: `/editLocation/${location.id}`,
+						pathname: `/editLocation/${location._id}`,
 						state: { location },
 					}}>
 					EDIT

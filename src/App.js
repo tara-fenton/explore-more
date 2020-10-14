@@ -10,6 +10,8 @@ import Locations from "./pages/Locations/Locations";
 import AddLocation from "./pages/AddLocation/AddLocation";
 import EditLocation from "./pages/EditLocation/EditLocation";
 import * as locationAPI from "./services/locations-api";
+import * as photoAPI from "./services/photos-api";
+import AddLocationPhoto from "./pages/AddLocationPhoto/AddLocationPhoto";
 
 class App extends Component {
 	state = {
@@ -55,6 +57,18 @@ class App extends Component {
 			// This cb function runs after state is updated
 			() => this.props.history.push("/locations")
 		);
+	};
+	handleAddLocationPhoto = async (newLocationPhotoData) => {
+		console.log("oh hey ad a photooooo");
+		newLocationPhotoData.user = this.state.user;
+		const newLocationPhoto = await photoAPI.create(newLocationPhotoData);
+		// this.setState(
+		// 	(state) => ({
+		// 		locations: [...state.locations, newLocation],
+		// 	}),
+		// 	// Using cb to wait for state to update before rerouting
+		// 	() => this.props.history.push("/locations")
+		// );
 	};
 
 	handleLogout = () => {
@@ -123,6 +137,18 @@ class App extends Component {
 								{...props}
 								locations={this.state.locations}
 								handleUpdateLocation={this.handleUpdateLocation}
+								history={history}
+							/>
+						)}
+					/>
+					<Route
+						exact
+						path="/addLocationPhoto/:id"
+						render={({ history, ...props }) => (
+							<AddLocationPhoto
+								{...props}
+								locations={this.state.locations}
+								handleAddLocationPhoto={this.handleAddLocationPhoto}
 								history={history}
 							/>
 						)}

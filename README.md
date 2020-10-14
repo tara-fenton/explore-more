@@ -11,3 +11,8 @@ create server.js
 
 `npm install react-router-dom`
 create navigation
+
+CRUD
+
+`npm i aws-sdk`
+`npm install uuid`
