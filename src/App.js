@@ -6,11 +6,25 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import Nav from "./components/Nav/Nav";
 import userService from "./utils/userService";
+import Locations from "./pages/Locations/Locations";
+import AddLocation from "./pages/AddLocation/AddLocation";
+import * as locationAPI from './services/locations-api';
 
 class App extends Component {
   state = {
     user: userService.getUser(),
+    locations: []
   };
+  
+
+  handleAddLocation = async newLocationData => {
+    const newLocation = await locationAPI.create(newLocationData);
+    this.setState(state => ({
+      locations: [...state.locations, newLocation]
+    }),
+    // Using cb to wait for state to update before rerouting
+    () => this.props.history.push('/'));
+  }
   handleLogout = () => {
     userService.logout();
     this.setState({ user: null });
@@ -38,6 +52,15 @@ class App extends Component {
               history={history}
             />
           }/>
+           <Route exact path='/locations' render={({ history }) => 
+            <Locations  />
+          }/>
+            <Route exact path='/addLocation' render={({ history }) => 
+            <AddLocation handleAddLocation={this.handleAddLocation}
+             
+            />
+          }/>
+
         </Switch>
       </div>
     );

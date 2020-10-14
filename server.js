@@ -15,8 +15,8 @@ app.use(favicon(path.join(__dirname, "build", "favicon.ico")));
 app.use(express.static(path.join(__dirname, "build")));
 
 // Put API routes here, before the "catch all" route
-// Put API routes here, before the "catch all" route
 app.use("/api/users", require("./routes/api/users"));
+app.use("/api/locations", require("./routes/api/locations"));
 // Mount the auth middleware that processes JWTs
 app.use(require("./config/auth"));
 // The following "catch all" route (note the *)is necessary

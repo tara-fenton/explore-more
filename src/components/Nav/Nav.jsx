@@ -5,7 +5,7 @@ const Nav = (props) => {
   let nav = props.user ? (
     <div>
       <NavLink to='/' onClick={props.handleLogout} >Logout</NavLink>
-
+      <NavLink to='/locations'  >Locations</NavLink>
       <span>WELCOME, {props.user.name}</span>
     </div>
   ) : (
