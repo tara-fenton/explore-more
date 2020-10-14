@@ -26,7 +26,7 @@ function LocationListItem({ location, handleDeleteLocation }) {
 				<Link
 					// className="btn btn-xs btn-info"
 					to={{
-						pathname: "/edit",
+						pathname: `/editLocation/${location.id}`,
 						state: { location },
 					}}>
 					EDIT

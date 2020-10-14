@@ -12,13 +12,13 @@ export function create(location) {
 	}).then((res) => res.json());
 }
 
-// export function update(pup) {
-//   return fetch(`${BASE_URL}/${pup._id}`, {
-//     method: 'PUT',
-//     headers: {'content-type': 'application/json'},
-//     body: JSON.stringify(pup)
-//   }).then(res => res.json());
-// }
+export function update(pup) {
+	return fetch(`${BASE_URL}/${pup._id}`, {
+		method: "PUT",
+		headers: { "content-type": "application/json" },
+		body: JSON.stringify(pup),
+	}).then((res) => res.json());
+}
 
 export function deleteOne(id) {
 	return fetch(`${BASE_URL}/${id}`, {

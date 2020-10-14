@@ -8,6 +8,7 @@ import Nav from "./components/Nav/Nav";
 import userService from "./utils/userService";
 import Locations from "./pages/Locations/Locations";
 import AddLocation from "./pages/AddLocation/AddLocation";
+import EditLocation from "./pages/EditLocation/EditLocation";
 import * as locationAPI from "./services/locations-api";
 
 class App extends Component {
@@ -39,6 +40,19 @@ class App extends Component {
 				// Yay, filter returns a NEW array
 				locations: this.state.locations.filter((p) => p._id !== id),
 			}),
+			() => this.props.history.push("/locations")
+		);
+	};
+
+	handleUpdateLocation = async (updatedLocationData) => {
+		const updatedLocation = await locationAPI.update(updatedLocationData);
+		// Using map to replace just the location that was updated
+		const newLocationsArray = this.state.locations.map((p) =>
+			p._id === updatedLocation._id ? updatedLocation : p
+		);
+		this.setState(
+			{ locations: newLocationsArray },
+			// This cb function runs after state is updated
 			() => this.props.history.push("/locations")
 		);
 	};
@@ -96,6 +110,19 @@ class App extends Component {
 						render={({ history }) => (
 							<AddLocation
 								handleAddLocation={this.handleAddLocation}
+								history={history}
+							/>
+						)}
+					/>
+					{/* <Route path="/movies/:id" render={(props) => <Movie {...props} />} /> */}
+					<Route
+						exact
+						path="/editLocation/:id"
+						render={({ history, ...props }) => (
+							<EditLocation
+								{...props}
+								locations={this.state.locations}
+								handleUpdateLocation={this.handleUpdateLocation}
 								history={history}
 							/>
 						)}

@@ -5,7 +5,7 @@ module.exports = {
 	// show,
 	create,
 	delete: deleteOne,
-	// update
+	update,
 };
 
 async function index(req, res) {
@@ -29,7 +29,11 @@ async function deleteOne(req, res) {
 	res.status(200).json(deletedLocation);
 }
 
-// async function update(req, res) {
-//   const updatedLocation = await Location.findByIdAndUpdate(req.params.id, req.body, {new: true});
-//   res.status(200).json(updatedLocation);
-// }
+async function update(req, res) {
+	const updatedLocation = await Location.findByIdAndUpdate(
+		req.params.id,
+		req.body,
+		{ new: true }
+	);
+	res.status(200).json(updatedLocation);
+}
