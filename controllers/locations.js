@@ -1,16 +1,16 @@
-const Location = require('../models/location');
+const Location = require("../models/location");
 
 module.exports = {
-  index,
-  // show,
-  create,
-  // delete: deleteOne,
-  // update
+	index,
+	// show,
+	create,
+	// delete: deleteOne,
+	// update
 };
 
 async function index(req, res) {
-  const locations = await Location.find({});
-  res.status(200).json(locations);
+	const locations = await Location.find({});
+	res.status(200).json(locations);
 }
 
 // async function show(req, res) {
@@ -19,9 +19,9 @@ async function index(req, res) {
 // }
 
 async function create(req, res) {
-  const location = await Location.create(req.body);
-  location.user = req.body.user._id;
-  res.status(201).json(location);
+	const location = await Location.create(req.body);
+	location.user = req.body.user._id;
+	res.status(201).json(location);
 }
 
 // async function deleteOne(req, res) {
