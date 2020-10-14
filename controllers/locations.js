@@ -4,7 +4,7 @@ module.exports = {
 	index,
 	// show,
 	create,
-	// delete: deleteOne,
+	delete: deleteOne,
 	// update
 };
 
@@ -24,10 +24,10 @@ async function create(req, res) {
 	res.status(201).json(location);
 }
 
-// async function deleteOne(req, res) {
-//   const deletedLocation = await Location.findByIdAndRemove(req.params.id);
-//   res.status(200).json(deletedLocation);
-// }
+async function deleteOne(req, res) {
+	const deletedLocation = await Location.findByIdAndRemove(req.params.id);
+	res.status(200).json(deletedLocation);
+}
 
 // async function update(req, res) {
 //   const updatedLocation = await Location.findByIdAndUpdate(req.params.id, req.body, {new: true});

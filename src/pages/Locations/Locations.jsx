@@ -11,7 +11,7 @@ const Locations = (props) => {
 				{props.locations.map((location) => (
 					<LocationListItem
 						location={location}
-						handleDeletelocation={props.handleDeletelocation}
+						handleDeleteLocation={props.handleDeleteLocation}
 						key={location._id}
 					/>
 				))}

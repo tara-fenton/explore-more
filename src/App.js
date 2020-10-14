@@ -28,9 +28,21 @@ class App extends Component {
 				locations: [...state.locations, newLocation],
 			}),
 			// Using cb to wait for state to update before rerouting
-			() => this.props.history.push("/")
+			() => this.props.history.push("/locations")
 		);
 	};
+
+	handleDeleteLocation = async (id) => {
+		await locationAPI.deleteOne(id);
+		this.setState(
+			(state) => ({
+				// Yay, filter returns a NEW array
+				locations: this.state.locations.filter((p) => p._id !== id),
+			}),
+			() => this.props.history.push("/locations")
+		);
+	};
+
 	handleLogout = () => {
 		userService.logout();
 		this.setState({ user: null });
@@ -70,7 +82,11 @@ class App extends Component {
 						exact
 						path="/locations"
 						render={({ history }) => (
-							<Locations locations={this.state.locations} history={history} />
+							<Locations
+								locations={this.state.locations}
+								handleDeleteLocation={this.handleDeleteLocation}
+								history={history}
+							/>
 						)}
 					/>
 

@@ -17,6 +17,13 @@ function LocationListItem({ location, handleDeleteLocation }) {
 			</div>
 			<div>
 				<Link
+					to={{
+						pathname: "/photos",
+						state: { location },
+					}}>
+					Photos
+				</Link>
+				<Link
 					// className="btn btn-xs btn-info"
 					to={{
 						pathname: "/edit",
