@@ -2,11 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 // import './LocationListItem.css';
 
-function LocationListItem({
-	location,
-	handleDeleteLocation,
-	handleAddLocationPhoto,
-}) {
+function LocationListItem({ location, handleDeleteLocation }) {
 	return (
 		<div>
 			<div>
@@ -24,7 +20,6 @@ function LocationListItem({
 					to={{
 						pathname: `/addLocationPhoto/${location._id}`,
 						state: { location },
-						handleAddLocationPhoto: handleAddLocationPhoto(location._id),
 					}}>
 					Photos
 				</Link>

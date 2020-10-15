@@ -12,16 +12,23 @@ import EditLocation from "./pages/EditLocation/EditLocation";
 import * as locationAPI from "./services/locations-api";
 import * as photoAPI from "./services/photos-api";
 import AddLocationPhoto from "./pages/AddLocationPhoto/AddLocationPhoto";
+// import user from "../models/user";
 
 class App extends Component {
 	state = {
 		user: userService.getUser(),
 		locations: [],
 	};
-	async componentDidMount() {
-		const locations = await locationAPI.getAll();
+	async loadLocations() {
+		let locations = await locationAPI.getAll();
+		if (this.state.user)
+			locations = locations.filter((l) => l.user === this.state.user._id);
+		// l.user == this.state.user.id);
 		this.setState({ locations });
 	}
+	// componentDidUpdate() {
+	// 	this.loadLocations();
+	// }
 
 	handleAddLocation = async (newLocationData) => {
 		newLocationData.user = this.state.user;
@@ -77,7 +84,7 @@ class App extends Component {
 	};
 
 	handleSignupOrLogin = () => {
-		this.setState({ user: userService.getUser() });
+		this.setState({ user: userService.getUser() }, () => this.loadLocations());
 	};
 
 	render() {
